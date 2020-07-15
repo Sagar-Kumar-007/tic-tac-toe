@@ -2,6 +2,8 @@ const cellElements=document.querySelectorAll("[data-cell]");
 const board=document.getElementById("board");
 const x_class="x";
 const o_class="o";
+const player_1="Player-1";
+const player_2="Player-2";
 var j=0;
 var a=new Array();
 for(var i=1;i<=9;i++)
@@ -49,6 +51,14 @@ function handleclick(e){
         document.querySelector("#message").className+="show";
     }
     console.log(j);
+
+    //Player-chance
+    if(circleturn){
+        document.querySelector(".main").innerHTML="<h2>Player 1 (X)</h2>";
+    }
+    else{
+        document.querySelector(".main").innerHTML="<h2>Player 2 (O)</h2>";
+    }
     //Swapping chance
     circleturn=!circleturn;
 };
