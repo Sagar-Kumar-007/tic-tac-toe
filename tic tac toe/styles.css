@@ -1,0 +1,137 @@
+*::before,*::after{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+#board{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-content: center;
+}
+.cell{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    
+}
+.cell:first-child,.cell:nth-child(2),.cell:nth-child(3){
+    border-top: 0;
+}
+.cell:nth-last-child(1),.cell:nth-last-child(2),.cell:nth-last-child(3){
+    border-bottom: 0;
+}
+.cell:nth-child(3n+1){
+    border-left: 0;
+}
+.cell:nth-child(3n+3){
+    border-right: 0;
+}
+
+
+.cell.x::before{   /* .a.b means both classes a and b must be active....  whereas .a .b means b class is inside a class */
+    content: '';
+    background-color: black;
+    width: 10px;
+    height: 90px;
+    transform: rotate(-45deg);
+    position: absolute;
+}
+.cell.x::after{
+    content: '';
+    background-color: black;
+    width: 10px;
+    height: 90px;
+    transform: rotate(45deg);
+    position: absolute;
+}
+.cell.o::before{
+    content: '';
+    height: 90px;
+    width: 90px;
+    background-color: black;
+    border-radius: 50px;
+    position: absolute;
+}
+.cell.o::after{
+    content: '';
+    height: 70px;
+    width: 70px;
+    background-color: white;
+    border-radius: 50px;
+    position: absolute;
+    margin-top: 10px;
+}
+.cell:hover{
+    cursor: pointer;
+}
+.cell.x,.cell.o{
+    cursor: not-allowed;
+}
+#board.x .cell:hover:not(.x):not(.o)::before{
+    content: '';
+    background-color: lightgray;
+    width: 10px;
+    height: 90px;
+    transform: rotate(-45deg);
+    position: absolute;
+}
+#board.x .cell:hover:not(.x):not(.o):after{
+    content: '';
+    background-color: lightgray;
+    width: 10px;
+    height: 90px;
+    transform: rotate(45deg);
+    position: absolute;
+}
+#board.o .cell:hover:not(.x):not(.o)::before{
+    content: '';
+    height: 90px;
+    width: 90px;
+    background-color:lightgray;
+    border-radius: 50px;
+    position: absolute;
+}
+#board.o .cell:hover:not(.x):not(.o):after{
+    content: '';
+    height: 70px;
+    width: 70px;
+    background-color: white;
+    border-radius: 50px;
+    position: absolute;
+    margin-top: 10px;
+}
+.msg{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: black;
+    opacity: .9;
+    justify-content: center;
+    align-items: center;
+}
+#button{
+    height: 5vh;
+    width: 15vw;
+    border-radius: 2vw;
+    font-size: 2vw;
+    font-weight: bold;
+}
+.data{
+    font-size:4vw;
+    color: white;
+    margin-right: 25px;
+    margin-bottom: 10px;
+}
+.msg.show{
+    display: flex;
+}
